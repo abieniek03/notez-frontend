@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider, UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { Navbar } from "@/components/navbar/Navbar";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -28,7 +29,10 @@ export default function RootLayout({
       }}
     >
       <html lang="en">
-        <body className={`${font.className} bg-background text-content`}>
+        <body
+          className={`${font.className} flex flex-col items-center bg-background text-content`}
+        >
+          <Navbar />
           {children}
           <div className="absolute right-5 top-5">
             <UserButton afterSignOutUrl="/" />
