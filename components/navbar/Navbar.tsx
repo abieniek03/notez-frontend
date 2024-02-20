@@ -1,14 +1,8 @@
 "use client";
 
-import { auth } from "@clerk/nextjs";
-
-import burgerMenu from "../../assets/burgerMenu.png";
-
-import { BurgerMenu } from "./navbar_components/BurgerMenu";
-import { NavLink } from "./navbar_components/Link";
-import { MobileMenu } from "./navbar_components/MobileMenu";
-
-import { useState } from "react";
+import { UserButton } from "@clerk/nextjs";
+import { BurgerMenu } from "./BurgerMenu";
+import { NavLink } from "./Link";
 
 const linksList: {
   label: string;
@@ -20,21 +14,26 @@ const linksList: {
   },
   {
     label: "Groups",
-    path: "/groups",
+    path: "/groups", //logged
   },
   {
     label: "User panel",
-    path: "/user_panel",
+    path: "/user_panel", //logged
+  },
+  {
+    label: "Sign in",
+    path: "/sign-in",
+  },
+  {
+    label: "Sign up",
+    path: "/sign-up",
   },
 ];
 
-export async function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const { userId } = auth();
-  console.log(userId);
+export function Navbar() {
   return (
     <>
-      <ul className="hidden h-12 w-80 items-center justify-between rounded-3xl border-2 border-primary px-4 sm:flex">
+      <ul className="hidden h-12 w-96 items-center justify-between rounded-3xl border-2 border-primary px-4 sm:flex">
         {linksList.map((e) => {
           return (
             <NavLink key={e.label} path={e.path}>
@@ -42,12 +41,11 @@ export async function Navbar() {
             </NavLink>
           );
         })}
+        <li>
+          <UserButton afterSignOutUrl="/" />
+        </li>
       </ul>
-      <BurgerMenu
-        image={burgerMenu}
-        onClick={() => setIsMobileMenuOpen(() => !isMobileMenuOpen)}
-      />
-      {isMobileMenuOpen && <MobileMenu links={linksList} />}
+      <BurgerMenu />
     </>
   );
 }

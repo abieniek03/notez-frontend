@@ -18,7 +18,7 @@ export function NavLink({ children, path }: props) {
     <li>
       <Link
         href={path}
-        className={`${path == pathname && "text-primary"} text-xs font-bold transition-all duration-300 hover:text-primary`}
+        className={`${path == pathname && "text-primary"} text-sm font-bold transition-all duration-300 hover:text-primary`}
       >
         {children}
       </Link>

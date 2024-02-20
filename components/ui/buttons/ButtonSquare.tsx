@@ -5,7 +5,7 @@ interface props {
   onClick?: () => void;
 }
 
-export function Square({ children, onClick }: props) {
+export function ButtonSquare({ children, onClick }: props) {
   return (
     <button
       onClick={onClick}

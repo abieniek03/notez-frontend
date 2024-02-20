@@ -7,7 +7,7 @@ interface props {
   checked: boolean;
 }
 
-export function Radio({
+export function InputRadio({
   label = "",
   onChange,
   value = "",

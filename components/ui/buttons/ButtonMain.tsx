@@ -6,7 +6,7 @@ interface props {
   loading?: boolean;
 }
 
-export function Main({ children, onClick, loading }: props) {
+export function ButtonMain({ children, onClick, loading }: props) {
   return (
     <button
       onClick={onClick}

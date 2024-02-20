@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider, UserButton } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Navbar } from "@/components/navbar/Navbar";
 
@@ -34,9 +34,6 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
-          <div className="absolute right-5 top-5">
-            <UserButton afterSignOutUrl="/" />
-          </div>
         </body>
       </html>
     </ClerkProvider>
