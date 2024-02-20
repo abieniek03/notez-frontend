@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import { Navbar } from "@/components/navbar/Navbar";
+import { Navbar } from "@/components/ui/Navbar";
 
 const font = Inter({ subsets: ["latin"] });
 
