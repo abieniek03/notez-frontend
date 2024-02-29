@@ -1,6 +1,6 @@
 "use client";
 
-import { useFoundFilesContext } from "context/FoundFiles";
+import { useFoundFilesContext } from "../../context/FoundFiles";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,7 +16,12 @@ export function FilesList({ groupId }: props) {
   return (
     <ul className="pl-13 flex flex-col pl-14">
       {files.map((el) => (
-        <Link className="text-sm font-normal" key={el.id} href={el.path}>
+        <Link
+          data-testid="file-link"
+          className="text-sm font-normal hover:underline"
+          key={el.id}
+          href={el.path}
+        >
           {el.name}
         </Link>
       ))}

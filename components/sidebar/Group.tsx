@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
 import { FilesList } from "./FilesList";
 import { useState } from "react";
@@ -23,6 +24,7 @@ export default function Group({ group }: props) {
       <div className="flex w-full items-center">
         {group.photo && (
           <Image
+            data-testid="group-photo"
             src={group.photo}
             alt="Group image"
             width={50}
@@ -31,8 +33,16 @@ export default function Group({ group }: props) {
           />
         )}
         <div className="flex w-full justify-between">
-          <h2 className="font-bold">{group.name}</h2>
-          <button onClick={() => setIsFileListOpen(!isFileListOpen)}>
+          <Link href={`groups/${group.id}`} className="hover:underline">
+            <h2 data-testid="group-name" className="font-bold">
+              {group.name}
+            </h2>
+          </Link>
+          <button
+            data-testid="group-btn"
+            className="rounded-full p-2 transition-all duration-300 hover:bg-primary"
+            onClick={() => setIsFileListOpen(!isFileListOpen)}
+          >
             {isFileListOpen ? <IoIosArrowDown /> : <IoIosArrowBack />}
           </button>
         </div>

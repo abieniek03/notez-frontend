@@ -12,14 +12,14 @@ interface data {
   }[];
 }
 
-const FoundFilesContext = createContext({});
+export const FoundFilesContext = createContext({});
 
 export const FoundFIlesContextProvider = ({ children }: any) => {
   const [fileData, setFileData] = useState<data>({
     files: [
       {
         id: "erwojgc9ewmrcgmw9veprctm39",
-        name: "Group name",
+        name: "File name",
         type: "normal",
         path: "/path",
         groupId: ["weferg4y55hetyhrge", "wefeeergthdfsy55hetyhrge"],
@@ -27,7 +27,7 @@ export const FoundFIlesContextProvider = ({ children }: any) => {
       },
       {
         id: "[4puv c4o[wvm w4[m[0]]]]",
-        name: "Group name",
+        name: "File name",
         type: "normal",
         path: "/path",
         groupId: ["wefeeergthdfsy55hetyhrge"],
@@ -35,7 +35,7 @@ export const FoundFIlesContextProvider = ({ children }: any) => {
       },
       {
         id: "wvt4ium3w34w=3tu",
-        name: "Group name",
+        name: "File name",
         type: "normal",
         path: "/path",
         groupId: ["weferg4y55hetyhrge"],
@@ -43,7 +43,7 @@ export const FoundFIlesContextProvider = ({ children }: any) => {
       },
       {
         id: "2vhtn03tn0[32tvh3240][tn[w",
-        name: "Group name",
+        name: "File name",
         type: "normal",
         path: "/path",
         groupId: ["weferg4y55hetyhrge", "weregthege55hetergehrge"],
@@ -51,7 +51,7 @@ export const FoundFIlesContextProvider = ({ children }: any) => {
       },
       {
         id: "tunv4[n3wt[9w4yn[",
-        name: "Group name",
+        name: "File name",
         type: "normal",
         path: "/path",
         groupId: ["weregthege55hetergehrge"],
@@ -59,7 +59,7 @@ export const FoundFIlesContextProvider = ({ children }: any) => {
       },
       {
         id: "wqwegehjytgewthey5jtryjryuik7ryituyte",
-        name: "Group name",
+        name: "File name",
         type: "normal",
         path: "/path",
         groupId: ["weregthege55hetergehrge"],

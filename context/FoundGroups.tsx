@@ -12,7 +12,7 @@ interface data {
   }[];
 }
 
-const FoundGroupsContext = createContext({});
+export const FoundGroupsContext = createContext({});
 
 export const FoundGroupsContextProvider = ({ children }: any) => {
   const [groupData, setGroupData] = useState<data>({

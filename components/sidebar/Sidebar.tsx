@@ -1,5 +1,5 @@
 "use client";
-import { useFoundGroupsContext } from "context/FoundGroups";
+import { useFoundGroupsContext } from "../../context/FoundGroups";
 import Group from "./Group";
 
 export default function Sidebar() {
