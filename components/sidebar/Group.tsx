@@ -33,7 +33,7 @@ export default function Group({ group }: props) {
           />
         )}
         <div className="flex w-full justify-between">
-          <Link href={`groups/${group.id}`} className="hover:underline">
+          <Link href={`/groups/${group.id}`} className="hover:underline">
             <h2 data-testid="group-name" className="font-bold">
               {group.name}
             </h2>

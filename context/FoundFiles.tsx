@@ -1,67 +1,68 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
+
+import { file } from "types/data";
 
 interface data {
-  files: {
-    id: string;
-    name: string;
-    type: "normal" | "shared";
-    path: string;
-    groupId: string[];
-    createDate: Date;
-  }[];
+  files: file[];
 }
 
-export const FoundFilesContext = createContext({});
+interface FoundFilesContextType {
+  fileData: data;
+  setFileData: React.Dispatch<React.SetStateAction<data>>;
+}
 
-export const FoundFIlesContextProvider = ({ children }: any) => {
+export const FoundFilesContext = createContext<FoundFilesContextType>({
+  fileData: { files: [] },
+  setFileData: () => {},
+});
+
+export const FoundFIlesContextProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const [fileData, setFileData] = useState<data>({
     files: [
       {
         id: "erwojgc9ewmrcgmw9veprctm39",
         name: "File name",
         type: "normal",
-        path: "/path",
         groupId: ["weferg4y55hetyhrge", "wefeeergthdfsy55hetyhrge"],
         createDate: new Date(),
       },
       {
-        id: "[4puv c4o[wvm w4[m[0]]]]",
-        name: "File name",
+        id: "[4puvc4owvmw4m0",
+        name: "File name2",
         type: "normal",
-        path: "/path",
         groupId: ["wefeeergthdfsy55hetyhrge"],
         createDate: new Date(),
       },
       {
         id: "wvt4ium3w34w=3tu",
-        name: "File name",
+        name: "File name3",
         type: "normal",
-        path: "/path",
         groupId: ["weferg4y55hetyhrge"],
         createDate: new Date(),
       },
       {
         id: "2vhtn03tn0[32tvh3240][tn[w",
-        name: "File name",
+        name: "File name4",
         type: "normal",
-        path: "/path",
         groupId: ["weferg4y55hetyhrge", "weregthege55hetergehrge"],
         createDate: new Date(),
       },
       {
         id: "tunv4[n3wt[9w4yn[",
-        name: "File name",
+        name: "File name5",
         type: "normal",
-        path: "/path",
         groupId: ["weregthege55hetergehrge"],
         createDate: new Date(),
       },
       {
         id: "wqwegehjytgewthey5jtryjryuik7ryituyte",
-        name: "File name",
+        name: "File name6",
         type: "normal",
-        path: "/path",
         groupId: ["weregthege55hetergehrge"],
         createDate: new Date(),
       },
@@ -75,4 +76,5 @@ export const FoundFIlesContextProvider = ({ children }: any) => {
   );
 };
 
-export const useFoundFilesContext: any = () => useContext(FoundFilesContext);
+export const useFoundFilesContext = (): FoundFilesContextType =>
+  useContext(FoundFilesContext);

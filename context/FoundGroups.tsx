@@ -1,21 +1,28 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-interface data {
-  groups: {
-    id: string;
-    name: string;
-    photo?: string;
-    members: string[];
-    files?: string[];
-    createDate: Date;
-  }[];
+import { group } from "types/data";
+
+interface Data {
+  groups: group[];
 }
 
-export const FoundGroupsContext = createContext({});
+interface FoundGroupsContextType {
+  groupData: Data;
+  setGroupData: React.Dispatch<React.SetStateAction<Data>>;
+}
 
-export const FoundGroupsContextProvider = ({ children }: any) => {
-  const [groupData, setGroupData] = useState<data>({
+const FoundGroupsContext = createContext<FoundGroupsContextType>({
+  groupData: { groups: [] },
+  setGroupData: () => {},
+});
+
+export const FoundGroupsContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [groupData, setGroupData] = useState<Data>({
     groups: [
       {
         id: "weferg4y55hetyhrge",
@@ -35,7 +42,7 @@ export const FoundGroupsContextProvider = ({ children }: any) => {
       },
       {
         id: "weregthege55hetergehrge",
-        name: "Group name2",
+        name: "Group name3",
         photo: "/test.jpeg",
         members: ["2334feww", "234243"],
         files: ["wefwefgew", "wfweeefw"],
@@ -51,4 +58,5 @@ export const FoundGroupsContextProvider = ({ children }: any) => {
   );
 };
 
-export const useFoundGroupsContext: any = () => useContext(FoundGroupsContext);
+export const useFoundGroupsContext = (): FoundGroupsContextType =>
+  useContext(FoundGroupsContext);

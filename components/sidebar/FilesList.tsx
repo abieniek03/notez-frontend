@@ -20,7 +20,7 @@ export function FilesList({ groupId }: props) {
           data-testid="file-link"
           className="text-sm font-normal hover:underline"
           key={el.id}
-          href={el.path}
+          href={`/file/${el.id}`}
         >
           {el.name}
         </Link>
