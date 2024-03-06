@@ -17,11 +17,11 @@ export function DataListElement({ element, background }: props) {
       className={`${background && "bg-primary-darker"} flex min-h-16 items-center justify-between px-4`}
     >
       <div className="flex">
-        {element.photo && (
+        {element?.photo && (
           <div className="flex min-h-16 min-w-20 items-center justify-center ">
             <Image
               data-testid="group-photo"
-              src={element.photo}
+              src={element?.photo}
               alt="Group image"
               width={50}
               height={50}
@@ -35,7 +35,7 @@ export function DataListElement({ element, background }: props) {
           </Link>
 
           <div className="text-xs">
-            {element.members
+            {element?.members
               ? `Members: ${element.members.length}, ${element.createDate.toString().substr(7, 8)}`
               : `Author: , Upload date: ${element.createDate.toString().substr(7, 8)}`}
           </div>

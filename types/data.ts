@@ -13,6 +13,9 @@ export interface file {
   type: "normal" | "shared";
   groupId: string[];
   createDate: Date;
+  photo?: never;
+  files?: never;
+  members?: never;
 }
 
 export type GroupAndData = group | file;
