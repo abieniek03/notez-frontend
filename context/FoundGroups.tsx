@@ -1,55 +1,27 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
 
+import { ReactNode, createContext, useContext, useState } from "react";
 import { group } from "types/data";
 
-interface Data {
-  groups: group[];
+interface passedData {
+  children: ReactNode;
+  fetchedData: group[];
 }
 
-interface FoundGroupsContextType {
-  groupData: Data;
-  setGroupData: React.Dispatch<React.SetStateAction<Data>>;
+interface foundGroupsContextData {
+  groupData: group[];
+  setGroupData: React.Dispatch<React.SetStateAction<group[]>>;
 }
 
-const FoundGroupsContext = createContext<FoundGroupsContextType>({
-  groupData: { groups: [] },
-  setGroupData: () => {},
-});
+export const FoundGroupsContext = createContext<foundGroupsContextData>(
+  {} as foundGroupsContextData,
+);
 
-export const FoundGroupsContextProvider = ({
+export const FoundGroupsContextProvider: React.FC<passedData> = ({
   children,
-}: {
-  children: React.ReactNode;
+  fetchedData,
 }) => {
-  const [groupData, setGroupData] = useState<Data>({
-    groups: [
-      {
-        id: "weferg4y55hetyhrge",
-        name: "Group name",
-        photo: "/test.jpeg",
-        members: ["2334feww", "234243"],
-        files: ["wefwefgew", "wfweeefw"],
-        createDate: new Date(),
-      },
-      {
-        id: "wefeeergthdfsy55hetyhrge",
-        name: "Group name2",
-        photo: "/test.jpeg",
-        members: ["2334feww", "234243"],
-        files: ["wefwefgew", "wfweeefw"],
-        createDate: new Date(),
-      },
-      {
-        id: "weregthege55hetergehrge",
-        name: "Group name3",
-        photo: "/test.jpeg",
-        members: ["2334feww", "234243"],
-        files: ["wefwefgew", "wfweeefw"],
-        createDate: new Date(),
-      },
-    ],
-  });
+  const [groupData, setGroupData] = useState<group[]>(fetchedData);
 
   return (
     <FoundGroupsContext.Provider value={{ groupData, setGroupData }}>
@@ -58,5 +30,5 @@ export const FoundGroupsContextProvider = ({
   );
 };
 
-export const useFoundGroupsContext = (): FoundGroupsContextType =>
+export const useFoundGroupsContext = (): foundGroupsContextData =>
   useContext(FoundGroupsContext);

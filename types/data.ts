@@ -10,7 +10,7 @@ export interface group {
 export interface file {
   id: string;
   name: string;
-  type: "normal" | "shared";
+  type: string;
   groupId: string[];
   createDate: Date;
   photo?: never;

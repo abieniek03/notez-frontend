@@ -13,7 +13,7 @@ export function Data() {
     if (pathname === "/groups") {
       return "Groups";
     } else {
-      const group = groupData.groups.find(
+      const group = groupData.find(
         (el: { id: string }) => el.id === pathname.slice(8),
       );
       return group ? group.name : "";

@@ -1,6 +1,8 @@
 import Sidebar from "@/components/sidebar/Sidebar";
 import { FoundGroupsContextProvider } from "context/FoundGroups";
-import { FoundFIlesContextProvider } from "context/FoundFiles";
+import { FoundFilesContextProvider } from "context/FoundFiles";
+import { testDataFiles } from "data/files";
+import { testDataGroups } from "data/groups";
 
 export default function MainLayout({
   children,
@@ -8,11 +10,11 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <FoundGroupsContextProvider>
-      <FoundFIlesContextProvider>
+    <FoundGroupsContextProvider fetchedData={testDataGroups}>
+      <FoundFilesContextProvider fetchedData={testDataFiles}>
         <Sidebar />
         {children}
-      </FoundFIlesContextProvider>
+      </FoundFilesContextProvider>
     </FoundGroupsContextProvider>
   );
 }

@@ -18,7 +18,7 @@ export function DataListElement({ element, background }: props) {
     >
       <div className="flex">
         {element?.photo && (
-          <div className="flex min-h-16 min-w-20 items-center justify-center ">
+          <div className="flex items-center justify-center ">
             <Image
               data-testid="group-photo"
               src={element?.photo}

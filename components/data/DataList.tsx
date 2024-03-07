@@ -17,8 +17,8 @@ export function DataList() {
   useEffect(() => {
     setUsedContext(
       pathname === "/groups"
-        ? groupData.groups
-        : fileData.files.filter((file: file) =>
+        ? groupData
+        : fileData.filter((file: file) =>
             file.groupId.includes(pathname.slice(8)),
           ),
     );

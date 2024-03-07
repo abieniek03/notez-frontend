@@ -11,7 +11,7 @@ interface props {
 export function FilesList({ groupId }: props) {
   const { fileData } = useFoundFilesContext();
   const [files, setFiles] = useState<any[]>(
-    fileData.files.filter((file: any) => file.groupId.includes(groupId)),
+    fileData.filter((file: any) => file.groupId.includes(groupId)),
   );
   return (
     <ul className="pl-13 flex flex-col pl-14">
