@@ -8,7 +8,12 @@ interface passedData {
   fetchedData: file[];
 }
 
-export const FoundFilesContext = createContext({});
+interface contextData {
+  fileData: file[];
+  setFileData: React.Dispatch<React.SetStateAction<file[]>>;
+}
+
+export const FoundFilesContext = createContext<contextData>({} as contextData);
 
 export const FoundFilesContextProvider = ({
   children,
@@ -23,4 +28,5 @@ export const FoundFilesContextProvider = ({
   );
 };
 
-export const useFoundFilesContext: any = () => useContext(FoundFilesContext);
+export const useFoundFilesContext = (): contextData =>
+  useContext(FoundFilesContext);

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Sidebar from "../../components/sidebar/Sidebar";
+import { Sidebar } from "../../components/sidebar/Sidebar";
 import { FoundGroupsContextProvider } from "../../context/FoundGroups";
 import { FoundFilesContextProvider } from "../../context/FoundFiles";
 

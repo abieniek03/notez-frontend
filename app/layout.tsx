@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
+import { PopupDataContextProvider } from "context/PopupData";
+
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+
 import { Navbar } from "@/components/ui/Navbar";
 
 const font = Inter({ subsets: ["latin"] });
@@ -28,14 +32,16 @@ export default function RootLayout({
         },
       }}
     >
-      <html lang="en">
-        <body
-          className={`${font.className} flex flex-col items-center bg-background text-content`}
-        >
-          <Navbar />
-          {children}
-        </body>
-      </html>
+      <PopupDataContextProvider>
+        <html lang="en">
+          <body
+            className={`${font.className} flex flex-col items-center bg-background text-content`}
+          >
+            <Navbar />
+            {children}
+          </body>
+        </html>
+      </PopupDataContextProvider>
     </ClerkProvider>
   );
 }

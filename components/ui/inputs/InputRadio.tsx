@@ -16,7 +16,7 @@ export function InputRadio({
   return (
     <div className="flex items-center">
       <input
-        className="mr-2 h-3.5 w-3.5 appearance-none rounded-full bg-white checked:bg-primary hover:bg-gray-300"
+        className="mr-2 h-3.5 w-3.5 appearance-none rounded-full bg-white checked:bg-primary hover:bg-white/50"
         type="radio"
         value={value}
         checked={checked}

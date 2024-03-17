@@ -8,19 +8,17 @@ interface passedData {
   fetchedData: group[];
 }
 
-interface foundGroupsContextData {
+interface contextData {
   groupData: group[];
   setGroupData: React.Dispatch<React.SetStateAction<group[]>>;
 }
 
-export const FoundGroupsContext = createContext<foundGroupsContextData>(
-  {} as foundGroupsContextData,
-);
+export const FoundGroupsContext = createContext<contextData>({} as contextData);
 
-export const FoundGroupsContextProvider: React.FC<passedData> = ({
+export const FoundGroupsContextProvider = ({
   children,
   fetchedData,
-}) => {
+}: passedData) => {
   const [groupData, setGroupData] = useState<group[]>(fetchedData);
 
   return (
@@ -30,5 +28,5 @@ export const FoundGroupsContextProvider: React.FC<passedData> = ({
   );
 };
 
-export const useFoundGroupsContext = (): foundGroupsContextData =>
+export const useFoundGroupsContext = (): contextData =>
   useContext(FoundGroupsContext);

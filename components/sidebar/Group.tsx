@@ -32,10 +32,12 @@ export default function Group({ group }: props) {
             className=" rounded-full p-2"
           />
         )}
-        <div className="flex w-full justify-between">
+        <div className="flex w-full items-center justify-between">
           <Link href={`/groups/${group.id}`} className="hover:underline">
             <h2 data-testid="group-name" className="font-bold">
-              {group.name}
+              {group.name.length > 15
+                ? group.name.slice(0, 14) + "..."
+                : group.name}
             </h2>
           </Link>
           <button

@@ -1,0 +1,29 @@
+import { useSearchDataContext } from "context/SearchParam";
+import { InputRadio } from "../inputs/InputRadio";
+import { ChangeEvent } from "react";
+
+interface props {
+  label: string;
+  inputData: {
+    label: string;
+    onChange: () => void;
+    value: string;
+    checked: boolean;
+  }[];
+}
+
+export function SortingOptionsElement({ label, inputData }: props) {
+  return (
+    <form className="mt-3 flex flex-col gap-3">
+      <h1>{label}</h1>
+      {inputData.map((e) => (
+        <InputRadio
+          label={e.label}
+          onChange={e.onChange}
+          value={e.value}
+          checked={e.checked}
+        />
+      ))}
+    </form>
+  );
+}

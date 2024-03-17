@@ -22,7 +22,7 @@ export function FilesList({ groupId }: props) {
           key={el.id}
           href={`/file/${el.id}`}
         >
-          {el.name}
+          {el.name.length > 15 ? el.name.slice(0, 20) + "..." : el.name}
         </Link>
       ))}
     </ul>
