@@ -29,4 +29,14 @@ export const testDataGroups = [
     createDate: new Date("2018-08-01"),
     markedByStar: false,
   },
+  {
+    id: "rgthdfsy55hetyhrfewdfews",
+    name: "new test group",
+    photo: "/test.jpeg",
+    members: ["2334feww", "234243"],
+    files: ["wefwefgew", "wfweeefw"],
+    authorId: "user_2cUOdm72s4DVQ43z9UJkbM3zl9m",
+    createDate: new Date("2022-05-05"),
+    markedByStar: true,
+  },
 ];

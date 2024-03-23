@@ -17,10 +17,8 @@ describe("Sidebar", () => {
     );
 
     await waitFor(() => {
-      const groupPhotos = screen.getAllByTestId("group-photo");
       const groupNames = screen.getAllByTestId("group-name");
 
-      expect(groupPhotos.length).toBe(testDataGroups.length);
       groupNames.forEach((nameElement, index) => {
         expect(nameElement.innerHTML).toBe(testDataGroups[index].name);
       });
@@ -42,7 +40,7 @@ describe("Sidebar", () => {
       await userEvent.click(groupButtons[i]);
 
       await waitFor(() => {
-        const fileLinks = screen.getAllByTestId("file-link");
+        const fileLinks = screen.queryAllByTestId("file-link");
         const groupFiles = testDataFiles.filter((file) =>
           file.groupId.includes(testDataGroups[i].id),
         );

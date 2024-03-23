@@ -3,13 +3,12 @@ import { SortingOptions } from "@/components/ui/popup/SortingOptions";
 
 import { VscSettings } from "react-icons/vsc";
 
-import { useSearchDataContext } from "context/SearchParam";
-import { usePopupDataContext } from "context/PopupData";
+import { useSearchDataContext } from "../../context/SearchParam";
+import { usePopupDataContext } from "../../context/PopupData";
 
 export function SearchBar() {
   const { popupData, setPopupData } = usePopupDataContext();
   const { searchParams, setSearchParams } = useSearchDataContext();
-  console.log(searchParams);
   return (
     <div className="my-6 flex gap-2">
       <InputText
@@ -18,8 +17,10 @@ export function SearchBar() {
         }
         placeholder="Search"
         value={searchParams.typedName}
+        testId="data-search-input"
       />
       <button
+        data-testid="sorting-options-button"
         onClick={() =>
           setPopupData({
             children: <SortingOptions />,

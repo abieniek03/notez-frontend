@@ -24,7 +24,6 @@ export default function Group({ group }: props) {
       <div className="flex w-full items-center">
         {group.photo && (
           <Image
-            data-testid="group-photo"
             src={group.photo}
             alt="Group image"
             width={50}

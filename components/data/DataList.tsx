@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-import { useFoundGroupsContext } from "context/FoundGroups";
-import { useFoundFilesContext } from "context/FoundFiles";
-import { useSearchDataContext } from "context/SearchParam";
+import { useFoundGroupsContext } from "../../context/FoundGroups";
+import { useFoundFilesContext } from "../../context/FoundFiles";
+import { useSearchDataContext } from "../../context/SearchParam";
 
 import { DataListElement } from "./DataListElement";
 

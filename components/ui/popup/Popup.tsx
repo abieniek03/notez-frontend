@@ -1,4 +1,4 @@
-import { usePopupDataContext } from "context/PopupData";
+import { usePopupDataContext } from "../../../context/PopupData";
 import { IoClose } from "react-icons/io5";
 
 export function Popup() {

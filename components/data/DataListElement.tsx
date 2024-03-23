@@ -5,7 +5,6 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 
 import { GroupAndData } from "types/data";
 import { FaRegStar } from "react-icons/fa";
-import { usePopupDataContext } from "context/PopupData";
 
 interface props {
   element: GroupAndData;
@@ -13,16 +12,15 @@ interface props {
 }
 
 export function DataListElement({ element, background }: props) {
-  const { popupData, setPopupData } = usePopupDataContext();
   return (
     <div
       className={`${background && "bg-primary-darker"} flex min-h-16 items-center justify-between px-4`}
+      data-testid="data-element"
     >
       <div className="flex">
         {element?.photo && (
-          <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center">
             <Image
-              data-testid="group-photo"
               src={element?.photo}
               alt="Group image"
               width={50}
@@ -32,7 +30,11 @@ export function DataListElement({ element, background }: props) {
           </div>
         )}
         <div className="flex flex-col justify-center">
-          <Link href={`/groups/${element.id}`} className="hover:underline">
+          <Link
+            href={`/groups/${element.id}`}
+            className="hover:underline"
+            data-testid="group-name"
+          >
             {element.name.length > 25
               ? element.name.slice(0, 24) + "..."
               : element.name}

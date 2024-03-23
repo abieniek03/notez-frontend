@@ -1,6 +1,6 @@
 "use client";
 
-import { useFoundGroupsContext } from "context/FoundGroups";
+import { useFoundGroupsContext } from "../../context/FoundGroups";
 import { usePathname } from "next/navigation";
 import { DataButtonsSection } from "./DataButtonsSection";
 

@@ -22,6 +22,7 @@ export function InputRadio({
         checked={checked}
         onChange={onChange}
         id={value}
+        data-testid={value}
       />
       <label className="text-xs" htmlFor={value}>
         {label}

@@ -21,7 +21,7 @@ export const testDataFiles = [
     id: "wvt4ium3w34w=3tu",
     name: "File name3",
     type: "normal",
-    groupId: ["weferg4y55hetyhrge"],
+    groupId: ["weferg4y55hetyhrge", "rgthdfsy55hetyhrfewdfews"],
     authorId: "user_2cUOdm72s4DVQ43z9UJkbM3zl9m",
     createDate: new Date(),
     markedByStar: false,
