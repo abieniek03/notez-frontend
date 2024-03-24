@@ -1,7 +1,7 @@
 import { usePathname } from "next/navigation";
 import { ButtonMain } from "../ui/buttons/ButtonMain";
 import { usePopupDataContext } from "../../context/PopupData";
-// import { CreateNewGroup } from "../ui/popup/createNewGroup/CreateNewGroup";
+import { CreateNewGroup } from "../ui/popup/createNewGroup/CreateNewGroup";
 
 interface button {
   text: string;
@@ -24,11 +24,10 @@ export function DataButtonsSection() {
     {
       text: "New group",
       onClick: () =>
-        // setPopupData({
-        //   children: <CreateNewGroup />,
-        //   isVisible: !popupData.isVisible,
-        // }),
-        console.log("click"),
+        setPopupData({
+          children: <CreateNewGroup />,
+          isVisible: !popupData.isVisible,
+        }),
     },
   ];
 

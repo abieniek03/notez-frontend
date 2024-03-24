@@ -31,7 +31,7 @@ export function UserComponent({ photoOnly, userData }: props) {
     <div className={photoOnly ? "" : "flex items-center gap-3"}>
       {renderUserImage()}
       <p
-        className={`${photoOnly && "invisible absolute rounded-lg bg-white p-1 text-[10px] text-black peer-hover:visible"} text-sm`}
+        className={`${photoOnly && "invisible absolute rounded-lg bg-white p-1 text-[9px] text-black peer-hover:visible"} text-sm`}
       >
         {userData.emailAddress}
       </p>
