@@ -1,5 +1,5 @@
 import { InputText } from "../ui/inputs/InputText";
-import { SortingOptions } from "@/components/ui/popup/SortingOptions";
+import { SortingOptions } from "@/components/ui/popup/dataSorting/SortingOptions";
 
 import { VscSettings } from "react-icons/vsc";
 

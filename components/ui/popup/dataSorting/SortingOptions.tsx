@@ -1,4 +1,4 @@
-import { useSearchDataContext } from "../../../context/SearchParam";
+import { useSearchDataContext } from "../../../../context/SearchParam";
 import { SortingOptionsElement } from "./SortingOptionsElement";
 
 export function SortingOptions() {
@@ -90,7 +90,11 @@ export function SortingOptions() {
   return (
     <div>
       {sortingOption.map((e) => (
-        <SortingOptionsElement label={e.label} inputData={e.inputData} />
+        <SortingOptionsElement
+          label={e.label}
+          inputData={e.inputData}
+          key={e.label}
+        />
       ))}
     </div>
   );
