@@ -1,7 +1,10 @@
-import React, { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { InputText } from "../../inputs/InputText";
 import { ButtonMain } from "../../buttons/ButtonMain";
 import { UserComponent } from "../../UserComponent";
+import { AddUser } from "./AddUser";
+import { usePopupDataContext } from "context/PopupData";
+import { EndingMessage } from "../EndingMessage";
 
 interface Member {
   imageUrl?: string;
@@ -15,7 +18,10 @@ interface GroupData {
   password: string;
 }
 
-export const CreateNewGroup: React.FC = () => {
+export function CreateNewGroup() {
+  const { popupData, setPopupData } = usePopupDataContext();
+
+  const [modalType, setModalType] = useState<string>("");
   const [groupData, setGroupData] = useState<GroupData>({
     name: "",
     members: [
@@ -49,59 +55,83 @@ export const CreateNewGroup: React.FC = () => {
     setGroupData({ ...groupData, [key]: value });
   };
 
-  return (
-    <div className="flex flex-col gap-6">
-      <h1 className="font-bold">Create new group</h1>
+  if (modalType !== "") {
+    return (
+      <AddUser
+        groupData={groupData}
+        setGroupData={setGroupData}
+        userType={modalType}
+        setModalType={setModalType}
+      />
+    );
+  } else {
+    return (
+      <div className="flex flex-col gap-6">
+        <h1 className="font-bold">Create new group</h1>
 
-      <div>
-        <h2>Group name</h2>
-        <InputText
-          onChange={(e) => handleInputChange(e, "name")}
-          placeholder="Group name"
-          value={groupData.name}
-        />
-      </div>
-
-      <div>
-        <h2>Members</h2>
-        <p className="text-xs text-primary">
-          You can modify members list any time
-        </p>
-        <div className="my-2 flex gap-2">
-          {groupData.members.map((member, index) => (
-            <div key={index}>
-              <UserComponent photoOnly={true} userData={member} />
-            </div>
-          ))}
+        <div>
+          <h2>Group name</h2>
+          <InputText
+            onChange={(e) => handleInputChange(e, "name")}
+            placeholder="Group name"
+            value={groupData.name}
+          />
         </div>
-        <ButtonMain>Add member</ButtonMain>
-      </div>
 
-      <div>
-        <h2>Admins</h2>
-        <p className="text-xs text-primary">
-          You can modify admins list any time
-        </p>
-        <div className="my-2 flex gap-2">
-          {groupData.admins.map((admin, index) => (
-            <div key={index}>
-              <UserComponent photoOnly={true} userData={admin} />
-            </div>
-          ))}
+        <div>
+          <h2>Members</h2>
+          <p className="text-xs text-primary">
+            You can modify members list any time
+          </p>
+          <div className="my-2 flex gap-2">
+            {groupData.members.map((member, index) => (
+              <div key={index}>
+                <UserComponent photoOnly={true} userData={member} />
+              </div>
+            ))}
+          </div>
+          <ButtonMain onClick={() => setModalType("member")}>
+            Add member
+          </ButtonMain>
         </div>
-        <ButtonMain>Add admin</ButtonMain>
-      </div>
 
-      <div>
-        <h2>Set password</h2>
-        <InputText
-          onChange={(e) => handleInputChange(e, "password")}
-          placeholder="Password"
-          value={groupData.password}
-        />
-      </div>
+        <div>
+          <h2>Admins</h2>
+          <p className="text-xs text-primary">
+            You can modify admins list any time
+          </p>
+          <div className="my-2 flex gap-2">
+            {groupData.admins.map((admin, index) => (
+              <div key={index}>
+                <UserComponent photoOnly={true} userData={admin} />
+              </div>
+            ))}
+          </div>
+          <ButtonMain onClick={() => setModalType("admin")}>
+            Add admin
+          </ButtonMain>
+        </div>
 
-      <ButtonMain onClick={() => console.log(groupData)}>Done</ButtonMain>
-    </div>
-  );
-};
+        <div>
+          <h2>Set password</h2>
+          <InputText
+            onChange={(e) => handleInputChange(e, "password")}
+            placeholder="Password"
+            value={groupData.password}
+          />
+        </div>
+
+        <ButtonMain
+          onClick={() =>
+            setPopupData({
+              ...popupData,
+              children: <EndingMessage endedWithSuccess={false} />,
+            })
+          }
+        >
+          Create
+        </ButtonMain>
+      </div>
+    );
+  }
+}
