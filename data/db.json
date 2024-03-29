@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "id": "userId1",
+      "email": "test@post.com",
+      "username": "UserTest123",
+      "photo": "/img/test.jpeg",
+      "groups": [],
+      "groupsMarkedByStar": [],
+      "filesMarkedByStar": [],
+      "createdAt": "Sat Feb 17 2024 10:39:39"
+    },
+    {
+      "id": "userId2",
+      "email": "test@post.com",
+      "username": "User2",
+      "photo": "/img/test2.jpeg",
+      "groups": [],
+      "groupsMarkedByStar": [],
+      "filesMarkedByStar": [],
+      "createdAt": "Sat Feb 17 2024 10:39:39"
+    },
+    {
+      "id": "user_2cUOdm72s4DVQ43z9UJkbM3zl9m",
+      "email": "uzytkownik@test.pl",
+      "username": "MainTestUser",
+      "photo": "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvdXBsb2FkZWQvaW1nXzJjVVA0dmc4a0VTZnZWbmNtamo5Tm93dEdjNSJ9",
+      "groups": ["groupId1"],
+      "groupsMarkedByStar": [],
+      "filesMarkedByStar": [],
+      "createdAt": "Sat Feb 17 2024 10:39:39"
+    }
+  ],
+  "groups": [
+    {
+      "id": "groupId1",
+      "photo": "/img/test.jpeg",
+      "name": "FirstGroup",
+      "invite_url": "http://localhost:3000/groups/invite/groupId1",
+      "invite_password": "pass123",
+      "members": ["userId1", "user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "admins": ["user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "files": ["fileId1"],
+      "createdAt": "Aug 01 2018"
+    },
+    {
+      "id": "groupId2",
+      "photo": "/img/test3.jpg",
+      "name": "2ndGroup",
+      "invite_url": "http://localhost:3000/groups/invite/groupId2",
+      "invite_password": "pass123",
+      "members": ["userId1", "user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "admins": ["user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "files": ["fileId1"],
+      "createdAt": "Aug 02 2018"
+    }
+  ],
+  "files": [
+    {
+      "id": "fileId1",
+      "name": "TestFile",
+      "content": "Example content to test JSON data",
+      "author": ["user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "isOpen": true,
+      "contributors": ["userId1", "user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "createdAt": "Aug 01 2018"
+    }
+  ]
+}

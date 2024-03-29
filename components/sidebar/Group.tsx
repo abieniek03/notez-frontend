@@ -14,9 +14,10 @@ interface props {
     members: string[];
     createDate: Date;
   };
+  files: any[];
 }
 
-export default function Group({ group }: props) {
+export function Group({ group, files }: props) {
   const [isFileListOpen, setIsFileListOpen] = useState<boolean>(false);
 
   return (
@@ -48,7 +49,7 @@ export default function Group({ group }: props) {
           </button>
         </div>
       </div>
-      {isFileListOpen && <FilesList groupId={group.id} />}
+      {isFileListOpen && <FilesList files={files} />}
     </div>
   );
 }

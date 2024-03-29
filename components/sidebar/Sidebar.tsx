@@ -1,9 +1,11 @@
-"use client";
-import { useFoundGroupsContext } from "../../context/FoundGroups";
-import Group from "./Group";
+import { getGroups } from "data/getGroups";
+import { getFiles } from "data/getFiles";
 
-export function Sidebar() {
-  const { groupData } = useFoundGroupsContext();
+import { Group } from "./Group";
+
+export async function Sidebar() {
+  const groupData = await getGroups();
+  const groupFiles = await getFiles();
 
   if (groupData.length == 0) {
     return (
@@ -26,7 +28,7 @@ export function Sidebar() {
               files?: string[];
               createDate: Date;
             }) => (
-              <Group key={el.id} group={el} />
+              <Group key={el.id} group={el} files={groupFiles} />
             ),
           )}
         </div>
