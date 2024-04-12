@@ -3,11 +3,11 @@ import Link from "next/link";
 
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-import { GroupAndData } from "types/data";
+import { groupAndData } from "types/data";
 import { FaRegStar } from "react-icons/fa";
 
 interface props {
-  element: GroupAndData;
+  element: groupAndData;
   background: boolean;
 }
 
@@ -42,9 +42,9 @@ export function DataListElement({ element, background }: props) {
 
           <div className="flex gap-3 text-xs">
             {element.members
-              ? `Members: ${element.members.length}, Created date: ${element.createDate.toString().substr(4, 11)}`
-              : `Author: , Upload date: ${element.createDate.toString().substr(4, 11)}`}
-            {element.markedByStar && <FaRegStar color="white" />}
+              ? `Members: ${element.members.length}, Created date: ${element.createdAt.toString().substr(4, 11)}`
+              : `Author: , Upload date: ${element.createdAt.toString().substr(4, 11)}`}
+            {/* {element.markedByStar && <FaRegStar color="white" />} */}
           </div>
         </div>
       </div>

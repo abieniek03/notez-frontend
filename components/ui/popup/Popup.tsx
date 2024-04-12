@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 export function Popup() {
   const { popupData, setPopupData } = usePopupDataContext();
   return (
-    <div className="absolute z-20 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+    <div className="absolute left-0 top-0 z-20 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
       <div className="relative w-full max-w-[600px] rounded-2xl bg-background p-12 lg:w-2/3">
         <button
           onClick={() =>

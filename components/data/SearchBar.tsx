@@ -9,6 +9,7 @@ import { usePopupDataContext } from "../../context/PopupData";
 export function SearchBar() {
   const { popupData, setPopupData } = usePopupDataContext();
   const { searchParams, setSearchParams } = useSearchDataContext();
+
   return (
     <div className="my-6 flex gap-2">
       <InputText

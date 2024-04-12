@@ -3,9 +3,8 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { group } from "types/data";
 
-interface passedData {
+interface prop {
   children: ReactNode;
-  fetchedData: group[];
 }
 
 interface contextData {
@@ -15,11 +14,8 @@ interface contextData {
 
 export const FoundGroupsContext = createContext<contextData>({} as contextData);
 
-export const FoundGroupsContextProvider = ({
-  children,
-  fetchedData,
-}: passedData) => {
-  const [groupData, setGroupData] = useState<group[]>(fetchedData);
+export const FoundGroupsContextProvider = ({ children }: prop) => {
+  const [groupData, setGroupData] = useState<group[]>([]);
 
   return (
     <FoundGroupsContext.Provider value={{ groupData, setGroupData }}>

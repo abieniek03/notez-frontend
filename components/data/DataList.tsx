@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
@@ -9,21 +7,22 @@ import { useSearchDataContext } from "../../context/SearchParam";
 
 import { DataListElement } from "./DataListElement";
 
-import { GroupAndData, file } from "types/data";
+import { groupAndData, file, group } from "types/data";
 
 export function DataList() {
   const { groupData } = useFoundGroupsContext();
   const { fileData } = useFoundFilesContext();
   const { searchParams } = useSearchDataContext();
 
-  const [presortData, setPresortData] = useState<GroupAndData[]>([]);
+  const [presortData, setPresortData] = useState<groupAndData[]>([]);
+
   const pathname = usePathname();
 
   const filterByName = () => {
     if (searchParams.typedName == "") {
       return presortData;
     } else {
-      return presortData.filter((el: GroupAndData) =>
+      return presortData.filter((el: groupAndData) =>
         el.name.toLowerCase().includes(searchParams.typedName.toLowerCase()),
       );
     }
@@ -44,19 +43,13 @@ export function DataList() {
   const sortByTime = (theNewest: boolean = true) => {
     if (theNewest) {
       return filterByName().sort((a, b) =>
-        a.createDate > b.createDate ? -1 : 1,
+        a.createdAt > b.createdAt ? -1 : 1,
       );
     } else {
       return filterByName().sort((a, b) =>
-        a.createDate > b.createDate ? 1 : -1,
+        a.createdAt > b.createdAt ? 1 : -1,
       );
     }
-  };
-
-  const sortByMarkedByStar = () => {
-    return filterByName().filter(
-      (el: GroupAndData) => el.markedByStar === true,
-    );
   };
 
   const dataToDisplay = () => {
@@ -69,8 +62,6 @@ export function DataList() {
         return searchParams.time === "the newest"
           ? sortByTime()
           : sortByTime(false);
-      } else if (searchParams.markedByStar) {
-        return sortByMarkedByStar();
       } else {
         return filterByName();
       }
@@ -80,14 +71,16 @@ export function DataList() {
   };
 
   useEffect(() => {
-    setPresortData(
-      pathname === "/groups"
-        ? groupData
-        : fileData.filter((file: file) =>
-            file.groupId.includes(pathname.slice(8)),
-          ),
-    );
-  }, []);
+    if (pathname === "/groups") {
+      setPresortData(groupData);
+    } else {
+      const currentGroup = groupData.find((el) => el.id === pathname.slice(8));
+      const files = (currentGroup?.files || [])
+        .map((el) => fileData.find((file) => file.id === el))
+        .filter(Boolean) as file[];
+      setPresortData(files);
+    }
+  }, [groupData, fileData, pathname]);
 
   return (
     <div className="mt-4">

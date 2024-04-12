@@ -4,9 +4,11 @@ import { useState, ChangeEvent } from "react";
 import { InputText } from "../../inputs/InputText";
 import { ButtonMain } from "../../buttons/ButtonMain";
 import { UserComponent } from "../../UserComponent";
-import { AddUser } from "./AddUser";
+import { AddMember } from "./AddMember";
 import { usePopupDataContext } from "context/PopupData";
 import { EndingMessage } from "../EndingMessage";
+
+import { postGroup } from "libs/postGroup";
 
 interface Member {
   imageUrl?: string;
@@ -15,9 +17,10 @@ interface Member {
 
 interface GroupData {
   name: string;
-  members: Member[];
-  admins: Member[];
-  password: string;
+  photo: string;
+  invitePassword: string;
+  members: string[];
+  admins: string[];
 }
 
 export function CreateNewGroup() {
@@ -26,27 +29,10 @@ export function CreateNewGroup() {
   const [modalType, setModalType] = useState<string>("");
   const [groupData, setGroupData] = useState<GroupData>({
     name: "",
-    members: [
-      {
-        imageUrl:
-          "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvdXBsb2FkZWQvaW1nXzJjVVA0dmc4a0VTZnZWbmNtamo5Tm93dEdjNSJ9?width=80",
-        emailAddress: "uzytkownik@test.com",
-      },
-      {
-        emailAddress: "innyuser@test.com",
-      },
-    ],
-    admins: [
-      {
-        imageUrl:
-          "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvdXBsb2FkZWQvaW1nXzJjVVA0dmc4a0VTZnZWbmNtamo5Tm93dEdjNSJ9?width=80",
-        emailAddress: "uzytkownik@test.com",
-      },
-      {
-        emailAddress: "innyuser@test.com",
-      },
-    ],
-    password: "",
+    photo: "",
+    members: ["uzytkownik@test.com", "innyuser@test.com"],
+    admins: ["uzytkownik@test.com", "innyuser@test.com"],
+    invitePassword: "",
   });
 
   const handleInputChange = (
@@ -58,14 +44,7 @@ export function CreateNewGroup() {
   };
 
   if (modalType !== "") {
-    return (
-      <AddUser
-        groupData={groupData}
-        setGroupData={setGroupData}
-        userType={modalType}
-        setModalType={setModalType}
-      />
-    );
+    return <AddMember />;
   } else {
     return (
       <div className="flex flex-col gap-6">
@@ -81,14 +60,25 @@ export function CreateNewGroup() {
         </div>
 
         <div>
+          <h2>Group photo</h2>
+          <input
+            type="file"
+            placeholder="Group name"
+            value={groupData.photo}
+            onChange={(e) => handleInputChange(e, "photo")}
+            className="text-xs font-bold file:min-h-10 file:min-w-28 file:rounded-lg file:border-0 file:bg-primary file:text-white"
+          />
+        </div>
+
+        <div>
           <h2>Members</h2>
           <p className="text-xs text-primary">
             You can modify members list any time
           </p>
           <div className="my-2 flex gap-2">
-            {groupData.members.map((member, index) => (
+            {groupData.members.map((userId, index) => (
               <div key={index}>
-                <UserComponent photoOnly={true} userData={member} />
+                <UserComponent photoOnly={true} userId={userId} />
               </div>
             ))}
           </div>
@@ -103,11 +93,11 @@ export function CreateNewGroup() {
             You can modify admins list any time
           </p>
           <div className="my-2 flex gap-2">
-            {groupData.admins.map((admin, index) => (
+            {/* {groupData.admins.map((admin, index) => (
               <div key={index}>
                 <UserComponent photoOnly={true} userData={admin} />
               </div>
-            ))}
+            ))} */}
           </div>
           <ButtonMain onClick={() => setModalType("admin")}>
             Add admin
@@ -117,19 +107,16 @@ export function CreateNewGroup() {
         <div>
           <h2>Set password</h2>
           <InputText
-            onChange={(e) => handleInputChange(e, "password")}
+            onChange={(e) => handleInputChange(e, "invitePassword")}
             placeholder="Password"
-            value={groupData.password}
+            value={groupData.invitePassword}
           />
         </div>
 
         <ButtonMain
-          onClick={() =>
-            setPopupData({
-              ...popupData,
-              children: <EndingMessage endedWithSuccess={false} />,
-            })
-          }
+          onClick={() => {
+            console.log(groupData);
+          }}
         >
           Create
         </ButtonMain>

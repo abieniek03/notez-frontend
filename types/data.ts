@@ -1,25 +1,26 @@
 export interface group {
   id: string;
-  name: string;
   photo?: string;
-  authorId: string;
+  name: string;
+  inviteUrl: string;
+  invitePassword: string;
   members: string[];
-  files?: string[];
-  createDate: Date;
-  markedByStar: boolean;
+  admins: string[];
+  files: string[];
+  createdAt: string;
 }
 
 export interface file {
   id: string;
   name: string;
-  type: string;
-  groupId: string[];
-  createDate: Date;
-  authorId: string;
-  photo?: never;
-  files?: never;
-  members?: never;
-  markedByStar: boolean;
+  content: string;
+  author: string;
+  is_open: boolean;
+  contributors: string[];
+  createdAt: string;
+
+  photo: never;
+  members: never;
 }
 
-export type GroupAndData = group | file;
+export type groupAndData = group | file;

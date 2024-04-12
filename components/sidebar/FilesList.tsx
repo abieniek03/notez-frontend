@@ -1,17 +1,20 @@
 import Link from "next/link";
+import { file } from "types/data";
 
-export function FilesList({ files }: any) {
+interface Props {
+  files: file[];
+}
+
+export function FilesList({ files }: Props) {
+  console.log(files);
   return (
     <ul className="pl-13 flex flex-col pl-14">
-      {files.map((el: { id: string; name: string }) => (
-        <Link
-          data-testid="file-link"
-          className="before:bg text-sm font-normal before:h-full before:w-1 before:content-[''] hover:underline"
-          key={el.id}
-          href={`/file/${el.id}`}
-        >
-          {el.name.length > 15 ? el.name.slice(0, 20) + "..." : el.name}
-        </Link>
+      {files.map((file: file) => (
+        <li key={file.id}>
+          <Link className="hover:underline" href={`./file/${file.id}`}>
+            {file.name}
+          </Link>
+        </li>
       ))}
     </ul>
   );

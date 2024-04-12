@@ -3,9 +3,8 @@ import { ReactNode, createContext, useContext, useState } from "react";
 
 import { file } from "types/data";
 
-interface passedData {
+interface props {
   children: ReactNode;
-  fetchedData: file[];
 }
 
 interface contextData {
@@ -15,11 +14,8 @@ interface contextData {
 
 export const FoundFilesContext = createContext<contextData>({} as contextData);
 
-export const FoundFilesContextProvider = ({
-  children,
-  fetchedData,
-}: passedData) => {
-  const [fileData, setFileData] = useState<file[]>(fetchedData);
+export const FoundFilesContextProvider = ({ children }: props) => {
+  const [fileData, setFileData] = useState<file[]>([]);
 
   return (
     <FoundFilesContext.Provider value={{ fileData, setFileData }}>

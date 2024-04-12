@@ -1,31 +1,11 @@
 {
   "users": [
     {
-      "id": "userId1",
-      "email": "test@post.com",
-      "username": "UserTest123",
-      "photo": "/img/test.jpeg",
-      "groups": [],
-      "groupsMarkedByStar": [],
-      "filesMarkedByStar": [],
-      "createdAt": "Sat Feb 17 2024 10:39:39"
-    },
-    {
-      "id": "userId2",
-      "email": "test@post.com",
-      "username": "User2",
-      "photo": "/img/test2.jpeg",
-      "groups": [],
-      "groupsMarkedByStar": [],
-      "filesMarkedByStar": [],
-      "createdAt": "Sat Feb 17 2024 10:39:39"
-    },
-    {
       "id": "user_2cUOdm72s4DVQ43z9UJkbM3zl9m",
       "email": "uzytkownik@test.pl",
       "username": "MainTestUser",
       "photo": "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvdXBsb2FkZWQvaW1nXzJjVVA0dmc4a0VTZnZWbmNtamo5Tm93dEdjNSJ9",
-      "groups": ["groupId1"],
+      "groups": ["groupId1", "groupId2", "groupId3"],
       "groupsMarkedByStar": [],
       "filesMarkedByStar": [],
       "createdAt": "Sat Feb 17 2024 10:39:39"
@@ -36,22 +16,33 @@
       "id": "groupId1",
       "photo": "/img/test.jpeg",
       "name": "FirstGroup",
-      "invite_url": "http://localhost:3000/groups/invite/groupId1",
-      "invite_password": "pass123",
+      "inviteUrl": "http://localhost:3000/groups/invite/groupId2",
+      "invitePassword": "pass123",
       "members": ["userId1", "user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
       "admins": ["user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
-      "files": ["fileId1"],
+      "files": ["fileId1", "fileId2"],
       "createdAt": "Aug 01 2018"
     },
     {
       "id": "groupId2",
       "photo": "/img/test3.jpg",
       "name": "2ndGroup",
-      "invite_url": "http://localhost:3000/groups/invite/groupId2",
-      "invite_password": "pass123",
+      "inviteUrl": "http://localhost:3000/groups/invite/groupId2",
+      "invitePassword": "pass123",
       "members": ["userId1", "user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
       "admins": ["user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
       "files": ["fileId1"],
+      "createdAt": "Aug 02 2018"
+    },
+    {
+      "id": "groupId3",
+      "photo": "/img/test2.jpg",
+      "name": "3rdGroup",
+      "inviteUrl": "http://localhost:3000/groups/invite/groupId3",
+      "invitePassword": "pass123",
+      "members": ["userId1", "user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "admins": ["user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "files": ["fileId1", "fileId3", "fileId4"],
       "createdAt": "Aug 02 2018"
     }
   ],
@@ -60,9 +51,36 @@
       "id": "fileId1",
       "name": "TestFile",
       "content": "Example content to test JSON data",
-      "author": ["user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "author": "user_2cUOdm72s4DVQ43z9UJkbM3zl9m",
       "isOpen": true,
       "contributors": ["userId1", "user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "createdAt": "Aug 01 2018"
+    },
+    {
+      "id": "fileId2",
+      "name": "TestFile2",
+      "content": "Example content to test JSON data",
+      "author": "user_2cUOdm72s4DVQ43z9UJkbM3zl9m",
+      "isOpen": true,
+      "contributors": ["userId1", "user_2cUOdm72s4DVQ43z9UJkbM3zl9m"],
+      "createdAt": "Aug 01 2018"
+    },
+    {
+      "id": "fileId3",
+      "name": "TestFile3",
+      "content": "Example content to test JSON data",
+      "author": "user_2cUOdm72s4DVQ43z9UJkbM3zl9m",
+      "isOpen": false,
+      "contributors": [],
+      "createdAt": "Aug 01 2018"
+    },
+    {
+      "id": "fileId4",
+      "name": "TestFile4",
+      "content": "Example content to test JSON data",
+      "author": "user_2cUOdm72s4DVQ43z9UJkbM3zl9m",
+      "isOpen": false,
+      "contributors": [],
       "createdAt": "Aug 01 2018"
     }
   ]

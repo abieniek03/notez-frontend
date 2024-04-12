@@ -1,67 +1,69 @@
 "use client";
 
 import { useFoundGroupsContext } from "../../context/FoundGroups";
+import { useFoundFilesContext } from "../../context/FoundFiles";
+import { useSearchDataContext } from "../../context/SearchParam";
+import { usePopupDataContext } from "../../context/PopupData";
+
 import { usePathname } from "next/navigation";
-import { DataButtonsSection } from "./DataButtonsSection";
+import { useEffect } from "react";
 
 import { DataList } from "./DataList";
 import { SearchBar } from "./SearchBar";
-import { useSearchDataContext } from "../../context/SearchParam";
+import { DataButtonsSection } from "./DataButtonsSection";
+import { Popup } from "../ui/popup/Popup";
+import { file, group } from "types/data";
 
-export function Data() {
-  const pathname: string = usePathname();
+interface props {
+  groups: group[];
+  files: file[];
+  urlParam?: string;
+}
 
-  const { groupData } = useFoundGroupsContext();
-  const { searchParams } = useSearchDataContext();
+export function Data({ groups, files, urlParam }: props) {
+  const { groupData, setGroupData } = useFoundGroupsContext();
+  const { fileData, setFileData } = useFoundFilesContext();
 
-  const getName = (): string => {
-    if (pathname === "/groups") {
-      return "Groups";
-    } else {
-      const group = groupData.find(
-        (el: { id: string }) => el.id === pathname.slice(8),
+  useEffect(() => {
+    setGroupData(groups);
+    setFileData(files);
+  }, [groupData, fileData]);
+
+  const { popupData } = usePopupDataContext();
+  const getName = () => {
+    if (urlParam) {
+      const foundGroup: group | undefined = groups.find(
+        (el: group) => el.id === urlParam,
       );
-      return group
-        ? group.name.length > 15
-          ? group.name.slice(0, 14) + "..."
-          : group.name
-        : "";
+      return foundGroup?.name || "Group Not Found";
+    } else {
+      return "Groups";
     }
   };
 
-  const displaySortingPattern = (): JSX.Element | null => {
-    if (searchParams.authorId !== "") {
-      return (
-        <p className="text-sm text-primary">Sort by: {searchParams.authorId}</p>
-      );
-    } else if (searchParams.fileName !== "") {
-      return (
-        <p className="text-sm text-primary">Sort by: {searchParams.fileName}</p>
-      );
-    } else if (searchParams.markedByStar) {
-      return <p className="text-sm text-primary">Sort by: Marked by star</p>;
-    } else if (searchParams.time) {
-      return (
-        <p className="text-sm text-primary">Sort by: {searchParams.time}</p>
-      );
-    } else return null;
-  };
-
-  return (
-    <div className="w-5/6 min-w-60 max-w-7xl lg:w-1/3 lg:min-w-[420px]">
-      <SearchBar />
-      <div className="">
-        <div className="flex w-full items-center justify-between">
-          <div className="flex items-center gap-3">
-            <h1 className="font-bold">{getName()}</h1>
-            {displaySortingPattern()}
-          </div>
-          <DataButtonsSection />
-        </div>
-        <main className="mt-6 max-h-[60vh] overflow-y-auto">
-          <DataList />
-        </main>
+  if (getName() == "Group Not Found") {
+    return (
+      <div className="flex w-5/6 min-w-60 max-w-7xl justify-center lg:w-1/3 lg:min-w-[420px]">
+        <h1 className="font-bold">{getName()}</h1>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="w-5/6 min-w-60 max-w-7xl lg:w-1/3 lg:min-w-[420px]">
+        {popupData.isVisible && <Popup />}
+        <SearchBar />
+        <div className="">
+          <div className="flex w-full items-center justify-between">
+            <div className="flex items-center gap-3">
+              <h1 className="font-bold">{getName()}</h1>
+            </div>
+            <DataButtonsSection />
+          </div>
+          <main className="mt-6 max-h-[60vh] overflow-y-auto">
+            <DataList />
+          </main>
+        </div>
+      </div>
+    );
+  }
 }

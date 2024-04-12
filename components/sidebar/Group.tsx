@@ -5,16 +5,11 @@ import Link from "next/link";
 import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
 import { FilesList } from "./FilesList";
 import { useState } from "react";
+import { file, group } from "types/data";
 
 interface props {
-  group: {
-    id: string;
-    name: string;
-    photo?: string;
-    members: string[];
-    createDate: Date;
-  };
-  files: any[];
+  group: group;
+  files: file[];
 }
 
 export function Group({ group, files }: props) {
